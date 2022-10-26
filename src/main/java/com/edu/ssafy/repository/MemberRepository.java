@@ -2,6 +2,8 @@ package com.edu.ssafy.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.edu.ssafy.dto.MemberDTO;
 
 public interface MemberRepository {

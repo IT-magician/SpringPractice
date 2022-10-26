@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.ssafy.repository.FileRepository">
+ 	<select id="Count" resultType="int">
+ 		select count(*) from file
+ 	</select>
+ 	
+ 	<insert id="regFile" parameterType="FileDTO">
+ 		insert into file(originName,fName,Path) values(#{originName},#{fName},#{Path})
+ 	</insert>
+ 	
+ 	<select id="getAll" resultType="FileDTO">
+ 		select * from file
+ 	</select>
+ 	
+ 	<select id="select" parameterType="java.util.HashMap" resultType="FileDTO">
+ 		select * from file
+ 		limit ${param1},${param2}
+ 	</select>
+</mapper>

@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="datasource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/webdaejeon6?serverTimezone=UTC&amp;useUniCode=yes&amp;characterEncoding=UTF-8" />
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="username" value="ssafy"/>
+	<bean id="datasource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/webdaejeon6?serverTimezone=UTC&amp;useUniCode=yes&amp;characterEncoding=UTF-8" />
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="username" value="ssafy" />
 		<property name="password" value="ssafy" />
 	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="datasource" />
-		<property name="configLocation" value="classpath:Config/mybatis.xml"/>
-		<property name="mapperLocations" value="classpath:myBatisMapping/**/*.xml" />
-		<property name="typeAliasesPackage" value="com.edu.ssafy.**.*dto"></property> <!-- 이걸 Config/mybatis에 wildmask를 적용할 수 없음. 이유는 *는 mybatis-spring에서 지원하는 기능임. http://itpsolver.com/%EB%A7%81%ED%81%AC-mybatis-%EC%97%90%EC%84%9C-package-%EB%8B%A8%EC%9C%84%EC%9D%98-typealias%EB%A5%BC-%EC%A0%95%EC%9D%98%ED%95%A0-%EB%95%8C-wildcard-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/ -->
+		<property name="configLocation"
+			value="classpath:Config/mybatis.xml" />
+		<property name="mapperLocations"
+			value="classpath:myBatisMapping/**/*.xml" />
+		<property name="typeAliasesPackage"
+			value="com.edu.ssafy.**.*dto"></property> <!-- 이걸 Config/mybatis에 wildmask를 적용할 수 없음. 이유는 *는 mybatis-spring에서 지원하는 
+			기능임. http://itpsolver.com/%EB%A7%81%ED%81%AC-mybatis-%EC%97%90%EC%84%9C-package-%EB%8B%A8%EC%9C%84%EC%9D%98-typealias%EB%A5%BC-%EC%A0%95%EC%9D%98%ED%95%A0-%EB%95%8C-wildcard-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/ -->
+
 	</bean>
-	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
+
+	<!-- mybatis에서 제공하는 scan 태그를 통해 repository interface들이 있는 패키지 위치를 지정한다. -->
+	<mybatis-spring:scan base-package="com.edu.ssafy.**.*repository"/>
+
 </beans>

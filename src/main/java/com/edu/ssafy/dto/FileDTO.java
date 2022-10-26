@@ -12,6 +12,12 @@ public class FileDTO {
 	public void setFid(int fid) {
 		this.fid = fid;
 	}
+	public FileDTO(String originName, String fName, String path) {
+		super();
+		this.originName = originName;
+		this.fName = fName;
+		Path = path;
+	}
 	public String getOriginName() {
 		return originName;
 	}
