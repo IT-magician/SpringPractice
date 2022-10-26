@@ -30,7 +30,7 @@ public class SpringTest {
 		
 //		session.insert("regMember", new MemberDTO("a","a","a","a","a"));
 		
-		List<MemberDTO> ret1 = session.selectList("listMember");
+//		List<MemberDTO> ret1 = session.selectList("listMember");
 //		System.out.println(ret1);
 		
 //		System.out.println(session.selectOne("getMember","a"));
@@ -39,9 +39,9 @@ public class SpringTest {
 		
 //		System.out.println(session.selectOne("getMember","a"));
 		
-		session.delete("deleteMember","a");
+//		session.delete("deleteMember","a");
 		
-		System.out.println(session.selectOne("logIn",new MemberDTO("a","ab",null,null,null)) != null);
+//		System.out.println(session.selectOne("logIn",new MemberDTO("a","ab",null,null,null)) != null);
 	}
 
 }
